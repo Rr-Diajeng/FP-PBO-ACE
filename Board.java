@@ -9,19 +9,14 @@ public class Board {
 	
 	int score = 0;
 	
-	public Board() {}
-	
-	public Board(int grids) {
+	public Board() {
 		
-		this.grids = grids;
-		board = new Tile[grids][grids];
-		
-		for(int i = 0; i < board.length; i++) {
-			for(int j = 0; j < board[i].length; j++) {
-				
-				board[i][j] = new Tile();
-			}
-		}
+		board = new Tile[4][4];
+		for ( int i = 0; i < board.length; i++ ){
+            for ( int j = 0; j < board[i].length; j++ ){
+                board[i][j] = new Tile();
+            }
+        }
 	}
 	
 	public Tile[][] getBoard(){
@@ -80,7 +75,7 @@ public class Board {
 	public void spawn() {
 		
 		boolean empty = true;
-		while(empty) {
+		while(empty){
 			
 			int row = (int) (Math.random() * 4);
 			int col = (int) (Math.random() * 4);
@@ -105,9 +100,11 @@ public class Board {
 		int count = 0;
 		for(int i = 0; i < board.length; i++) {
 			for(int j = 0; j < board[i].length; j++) {
-				if(board[i][j].getValue() > 0) return true;
+				if(board[i][j].getValue() > 0) count++;
 			}
 		}
+		
+		if(count == 16) return true;
 		
 		return false;
 	}
@@ -140,11 +137,6 @@ public class Board {
 					else if(i == 3 && j == 0) {
 						
 						if(board[i][j].getValue() != board[i - 1][j].getValue() && board[i][j].getValue() != board[i][j + 1].getValue()) count++;
-					}
-					
-					else if(i == 3 && j == 3) {
-						
-						if(board[i][j].getValue() != board[i - 1][j].getValue() && board[i][j].getValue() != board[i][j - 1].getValue()) count++;
 					}
 					
 					else if(i == 0 && (j == 1 || j == 2)) {
@@ -182,8 +174,8 @@ public class Board {
 	
 	public void horizontalMove(int row, int col, String direction) {
 		
-		Tile x = board[row][col];
-		Tile compare = board[row][border];
+		Tile x = board[row][border];
+		Tile compare = board[row][col];
 		
 		if(x.getValue() == 0 || x.getValue() == compare.getValue()) {
 			if(col > border || (direction.equals("right") && (col <  border))) {
@@ -266,7 +258,7 @@ public class Board {
 			border = 0;
 			for(int j = 0; j < grids; j++) {
 				
-				if(board[i][j].getValue() != 0) {
+				if(board[j][i].getValue() != 0) {
 					if(border <= j) verticalMove(j, i, "up");
 				}
 			}
@@ -281,7 +273,7 @@ public class Board {
 			border = (grids - 1);
 			for(int j = grids - 1; j >= 0; j--) {
 				
-				if(board[i][j].getValue() != 0) {
+				if(board[j][i].getValue() != 0) {
 					
 					if(border >= j) verticalMove(j, i, "down");
 				}
