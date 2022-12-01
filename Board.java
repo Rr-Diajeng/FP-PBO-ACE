@@ -13,7 +13,7 @@ public class Board {
 		
 		board = new Tile[4][4];
 		for ( int i = 0; i < board.length; i++ ){
-            for ( int j = 0; j < board[i].length; j++ ){
+            for ( int j = 0; j < board.length; j++ ){
                 board[i][j] = new Tile();
             }
         }
@@ -172,31 +172,6 @@ public class Board {
 		return false;
 	}
 	
-	public void horizontalMove(int row, int col, String direction) {
-		
-		Tile x = board[row][border];
-		Tile compare = board[row][col];
-		
-		if(x.getValue() == 0 || x.getValue() == compare.getValue()) {
-			if(col > border || (direction.equals("right") && (col <  border))) {
-				
-				int addScore = x.getValue() + compare.getValue();
-				
-				if(x.getValue() != 0) score += addScore;
-				
-				x.setValue(addScore);
-				compare.setValue(0);
-			}
-		}
-		
-		else {
-			if(direction.equals("right")) border--;
-			else border++;
-			
-			horizontalMove(row, col, direction);
-		}
-	}
-	
 	public void right() {
 		
 		for(int i = 0; i < grids; i++) {
@@ -225,14 +200,13 @@ public class Board {
 		}	
 	}
 	
-	public void verticalMove(int row, int col, String direction) {
+	public void horizontalMove(int row, int col, String direction) {
 		
-		Tile x = board[border][col];
+		Tile x = board[row][border];
 		Tile compare = board[row][col];
 		
 		if(x.getValue() == 0 || x.getValue() == compare.getValue()) {
-			
-			if(row > border || (direction.equals("down") && (row < border))) {
+			if(col > border || (direction.equals("right") && (col <  border))) {
 				
 				int addScore = x.getValue() + compare.getValue();
 				
@@ -244,10 +218,10 @@ public class Board {
 		}
 		
 		else {
-			if(direction.equals("down")) border--;
+			if(direction.equals("right")) border--;
 			else border++;
 			
-			verticalMove(row, col, direction);
+			horizontalMove(row, col, direction);
 		}
 	}
 	
@@ -280,21 +254,32 @@ public class Board {
 			}
 		}
 	}
+	
+	public void verticalMove(int row, int col, String direction) {
+		
+		Tile x = board[border][col];
+		Tile compare = board[row][col];
+		
+		if(x.getValue() == 0 || x.getValue() == compare.getValue()) {
+			
+			if(row > border || (direction.equals("down") && (row < border))) {
+				
+				int addScore = x.getValue() + compare.getValue();
+				
+				if(x.getValue() != 0) score += addScore;
+				
+				x.setValue(addScore);
+				compare.setValue(0);
+			}
+		}
+		
+		else {
+			if(direction.equals("down")) border--;
+			else border++;
+			
+			verticalMove(row, col, direction);
+		}
+	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
