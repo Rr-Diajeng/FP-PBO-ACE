@@ -9,8 +9,7 @@ import java.util.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-
-public class Game extends JPanel implements KeyListener{
+public class Game extends JPanel implements KeyListener, MouseListener{
 
 	
 	private Board game = new Board();
@@ -19,29 +18,36 @@ public class Game extends JPanel implements KeyListener{
 	
 	static JFrame frame = new JFrame("2048");
 	
+	private Display display = new Display();
 
 	public static void setUpGUI() {
 			
 		frame = new JFrame("2048");
-		
+
 		frame.addKeyListener(newGame);
+		frame.addMouseListener(newGame);
 		frame.getContentPane().add(newGame);
+	
+		
 		frame.setSize(1280, 700);
 		frame.setVisible(true);
 		frame.setResizable(true);
 		
 	}
 	
+	
 	public void paint(Graphics g) {
 		
 		super.paint(g);
-		g.drawString("2048", 640, 20);
+		Font fnt0 = new Font("arial", Font.BOLD, 50);
+		g.setFont(fnt0);
+		g.drawString("2048", 600, 70);
+		
+		Font fnt1 = new Font("arial", Font.BOLD, 15);
+		g.setFont(fnt1);
 		g.drawString( "Score: " + game.getScore(), 400 - 4 * String.valueOf( game.getScore() ).length(), 70);
 		g.drawString("Highest Tile: " + game.getHighTile(), 880 - 4 * String.valueOf(game.getHighTile()).length(), 70);
-		g.drawString("Use 'wasd' or Arrow Keys to move", 570, 600);
-		
-		if(game.blackOut() == true)g.drawString("Press 'Enter' to restart", 610, 575);
-		else g.drawString("Press 'Enter' to Start", 610, 575);
+		g.drawString("Use 'wasd' or Arrow Keys to move", 530, 600);
 		
 		g.setColor(Color.gray);
 		g.fillRect(430, 100, 450, 450);
@@ -68,6 +74,8 @@ public class Game extends JPanel implements KeyListener{
 				}
 			}
 		}
+		
+		display.render(g);
 	}
 	
 	void drawTiles(Graphics g, Tile tile, int x, int y) {
@@ -122,12 +130,6 @@ public class Game extends JPanel implements KeyListener{
 			frame.repaint();
 		}
 		
-		else if(e.getKeyCode() == KeyEvent.VK_ENTER) {
-			game = new Board();
-			game.spawn();
-			game.spawn();
-			frame.repaint();
-		}
 	}
 
 	@Override
@@ -143,10 +145,43 @@ public class Game extends JPanel implements KeyListener{
 		
 	}
 	
-	public static void main(String[] args) {
-		
-		setUpGUI();
+	@Override
+	public void mouseClicked(MouseEvent e) {
 	}
-	
+
+//	public Rectangle newGame = new Rectangle(900, 100, 120, 50);
+	@Override
+	public void mousePressed(MouseEvent e) {
+		int mx = e.getX();
+		int my = e.getY();
+		
+		if(mx >= 900 && mx <= 1020) {
+			if(my >= 100 && my <= 180) {
+				game = new Board();
+				game.spawn();
+				game.spawn();
+				frame.repaint();
+			}
+		}
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
