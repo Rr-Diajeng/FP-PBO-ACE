@@ -1,91 +1,84 @@
 package Com.Game;
 
 import java.awt.Color;
-
-public class Tile {
 	
+public class Tile{
+	    
 	int value;
-	
-	private int number;
-	private Color angkaColor;
-	
-	public Tile() {
-		
-		this.value = 0;
+
+	Color TileColor;
+
+
+	public Tile(){
+	    value = 0;
+	}
+
+	public Tile( int number ){
+	    value = number;
+	}
+
+	public int getValue(){
+	    return value;
+	}
+
+	public void setValue( int value ){
+	    this.value = value;
+	}
+
+	public String toString(){
+	    return "" + value;
+	}
+
+
+	public void setColor(){
+	if ( this.getValue() == 2 ){
+		TileColor = new Color( 241, 198, 151 );
 	}
 	
-	public Tile(int number) {
-		
-		this.number = number;
-		
-		this.value = this.number;
+	else if ( this.getValue() == 4 ){
+		TileColor = new Color( 213, 246, 246 );
 	}
 	
-	public int getValue() {
-		
-		return this.value;
+	else if ( this.getValue() == 8 ){
+		TileColor = new Color( 5, 100, 113 );
 	}
 	
-	public void setValue(int value) {
-		
-		this.value = value;
+	else if ( this.getValue() == 16 ){
+		TileColor = new Color( 16, 137, 167 );
 	}
 	
-	public String toString() {
-		
-		return "" + this.value;
+	else if ( this.getValue() == 32 ){
+		TileColor = new Color( 89, 213, 233 );
 	}
 	
-	public void setColor() {
-		
-		if (this.getValue() == 2 )
-		{
-			angkaColor = new Color( 45, 133, 197 );
-		}
-		
-		else if (this.getValue() == 4 ){
-			angkaColor = new Color( 60, 169, 238 );
-		}
-		
-		else if (this.getValue() == 8 ){
-		    angkaColor = new Color( 97, 189, 238 );
-		}
-		
-		else if (this.getValue() == 16 ){
-		    angkaColor = new Color( 165, 211, 235 );
-		}
-		
-		else if (this.getValue() == 32 ){
-		    angkaColor = new Color( 226, 226, 226 );
-		}
-		
-		else if (this.getValue() == 64 ){
-		    angkaColor = new Color( 223, 166, 147 );
-		}
-		
-		else if (this.getValue() == 128 ){
-		    angkaColor = new Color( 220, 110, 85 );
-		}
-		
-		else if (this.getValue() == 256 ){
-		    angkaColor = new Color( 225, 75, 50 );
-		}
-		
-		else if (this.getValue() == 512 ){
-		    angkaColor = new Color( 195, 55, 38 );
-		}
-		
-		else if (this.getValue() == 1024 ){
-		    angkaColor = new Color( 157, 42, 28 );
-		}
-		
-		 else{
-		    angkaColor = new Color( 237, 194, 46 );
-		}
+	else if ( this.getValue() == 64 ){
+		TileColor = new Color( 151, 234, 242 );
 	}
 	
-	public Color getColor() {
-		this.setColor();
-		return angkaColor;
+	else if ( this.getValue() == 128 ){
+		TileColor = new Color( 227, 172, 99 );
+	}
+	
+	else if ( this.getValue() == 256 ){
+		TileColor = new Color( 44, 201, 180 );
+	}
+	
+	else if ( this.getValue() == 512 ){
+		TileColor = new Color( 20, 187, 220 );
+	}
+	
+	else if ( this.getValue() == 1024 ){
+		TileColor = new Color( 82, 82, 20 );
+	}
+	
+	 else{
+		 TileColor = new Color( 49, 49, 12 );
 	}
 }
+
+
+	public Color getColor(){
+		this.setColor();
+	        return TileColor;
+	        }
+	}
