@@ -1,6 +1,6 @@
 package Com.Game;
 
-public class Board {
+public class Board { // logic untuk memainkan game. 
 	
 	public Tile[][] board;
 	
@@ -24,12 +24,12 @@ public class Board {
 		return board;
 	}
 	
-	public int getScore() {
+	public int getScore() { // untuk mendapatkan skor
 		
 		return score;
 	}
 	
-	public int getHighTile() {
+	public int getHighTile() { // angka paling tinggi di board
 		
 		int high = board[0][0].getValue();
 		
@@ -43,7 +43,7 @@ public class Board {
 		return high;
 	}
 	
-	public void print() {
+	public void print() { // output angka 
 		
 		for(int i = 0; i < board.length; i++) {
 			for(int j = 0; j < board[i].length; j++) {
@@ -58,7 +58,7 @@ public class Board {
 		System.out.println("Score: " + score);
 	}
 	
-	public String toString() {
+	public String toString() { // output angka 
 		
 		String s = "";
 		for(int i = 0; i < board.length; i++) {
@@ -72,7 +72,7 @@ public class Board {
 		return s;
 	}
 	
-	public void spawn() {
+	public void spawn() { // untuk menampilkan lokasi random milik tile 2 dan tile 4. 
 		
 		boolean empty = true;
 		while(empty){
@@ -95,7 +95,7 @@ public class Board {
 		}
 	}
 	
-	public boolean blackOut() {
+	public boolean blackOut() { // untuk cek apakah papan mengalami blackout tapi masih ada angka yang bisa dicombine
 		
 		int count = 0;
 		for(int i = 0; i < board.length; i++) {
@@ -109,7 +109,7 @@ public class Board {
 		return false;
 	}
 	
-	public boolean gameOver() {
+	public boolean gameOver() { // papan sudah penuh dan tidak ada angka yang bisa dicombine. 
 		
 		int count = 0;
 		for(int i = 0; i < board.length; i++) {
@@ -172,7 +172,7 @@ public class Board {
 		return false;
 	}
 	
-	public void right() {
+	public void right() { // untuk gerak kekanan
 		
 		for(int i = 0; i < grids; i++) {
 			
@@ -186,7 +186,7 @@ public class Board {
 		}
 	}
 	
-	public void left() {
+	public void left() { // untuk gerak ke kiri
 		
 		for(int i = 0; i < grids; i++) {
 			
@@ -200,7 +200,7 @@ public class Board {
 		}	
 	}
 	
-	public void horizontalMove(int row, int col, String direction) {
+	public void horizontalMove(int row, int col, String direction) { // untuk cek gerak arah horizontal
 		
 		Tile x = board[row][border];
 		Tile compare = board[row][col];
@@ -225,7 +225,7 @@ public class Board {
 		}
 	}
 	
-	public void up() {
+	public void up() { // untuk gerak ke atas
 		
 		for(int i = 0; i < grids; i++) {
 			
@@ -240,7 +240,7 @@ public class Board {
 		
 	}
 	
-	public void down() {
+	public void down() { // untuk gerak ke bawah
 		
 		for(int i = 0; i < grids; i++) {
 			
@@ -255,7 +255,7 @@ public class Board {
 		}
 	}
 	
-	public void verticalMove(int row, int col, String direction) {
+	public void verticalMove(int row, int col, String direction) { // untuk gerak vertical
 		
 		Tile x = board[border][col];
 		Tile compare = board[row][col];
