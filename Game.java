@@ -20,36 +20,37 @@ public class Game extends JPanel implements KeyListener, MouseListener{
 	
 	private Display display = new Display();
 
-	public static void setUpGUI() {
+	public static void setUpGUI() { // untuk set up size yang tepat dan menambahkan keylistener beserta mouselistener
 			
 		frame = new JFrame("2048");
 
 		frame.addKeyListener(newGame);
 		frame.addMouseListener(newGame);
 		frame.getContentPane().add(newGame);
-	
 		
 		frame.setSize(1280, 700);
 		frame.setVisible(true);
 		frame.setResizable(true);
 		
 	}
+
 	
-	
-	public void paint(Graphics g) {
+	public void paint(Graphics g) { // untuk pewarnaan game. 
 		
 		super.paint(g);
-		Font fnt0 = new Font("arial", Font.BOLD, 50);
+		Font fnt0 = new Font("Comic Sans", Font.CENTER_BASELINE, 50);
 		g.setFont(fnt0);
+		g.setColor(new Color(197, 155, 48));
 		g.drawString("2048", 600, 70);
 		
-		Font fnt1 = new Font("arial", Font.BOLD, 15);
+		Font fnt1 = new Font("Comic Sans", Font.CENTER_BASELINE, 15);
 		g.setFont(fnt1);
+		g.setColor(new Color(197, 155, 48));
 		g.drawString( "Score: " + game.getScore(), 400 - 4 * String.valueOf( game.getScore() ).length(), 70);
 		g.drawString("Highest Tile: " + game.getHighTile(), 880 - 4 * String.valueOf(game.getHighTile()).length(), 70);
 		g.drawString("Use 'wasd' or Arrow Keys to move", 530, 600);
 		
-		g.setColor(Color.gray);
+		g.setColor(new Color (255, 226, 173));
 		g.fillRect(430, 100, 450, 450);
 		
 		for(int i = 0; i < 4; i++) {
@@ -60,7 +61,7 @@ public class Game extends JPanel implements KeyListener, MouseListener{
 		
 		if(game.gameOver()) {
 			
-			g.setColor(Color.gray);
+			g.setColor(new Color (114, 9, 183));
 			g.fillRect(430, 100, 450, 450);
 			
 			for(int i = 0; i < 4; i++) {
@@ -78,12 +79,12 @@ public class Game extends JPanel implements KeyListener, MouseListener{
 		display.render(g);
 	}
 	
-	void drawTiles(Graphics g, Tile tile, int x, int y) {
+	void drawTiles(Graphics g, Tile tile, int x, int y) { // untuk pewarnaan tile
 		
 		int tileValue = tile.getValue();
 		int length = String.valueOf(tileValue).length();
 		
-		g.setColor(Color.lightGray);
+		g.setColor(new Color (247, 240, 222));
 		g.fillRoundRect(x, y, 95, 95, 5, 5); // besar kotak 95 
 		g.setColor(Color.BLACK);
 		
@@ -99,7 +100,7 @@ public class Game extends JPanel implements KeyListener, MouseListener{
 	
 	
 	@Override
-	public void keyPressed(KeyEvent e) {
+	public void keyPressed(KeyEvent e) { // mendeteksi arah gerak dari keyboard
 		
 		String gameBoard;
 		if(e.getKeyChar() == 'w' || e.getKeyCode() == KeyEvent.VK_UP) {
@@ -149,9 +150,8 @@ public class Game extends JPanel implements KeyListener, MouseListener{
 	public void mouseClicked(MouseEvent e) {
 	}
 
-//	public Rectangle newGame = new Rectangle(900, 100, 120, 50);
 	@Override
-	public void mousePressed(MouseEvent e) {
+	public void mousePressed(MouseEvent e) { // untuk mendeteksi saat button di pencet maka terjadi new game
 		int mx = e.getX();
 		int my = e.getY();
 		
