@@ -33,6 +33,4 @@ public class Display{ // untuk pembuatan button
 		g2d.draw(scoreBoard);
 		
 	}
-	
-
 }
