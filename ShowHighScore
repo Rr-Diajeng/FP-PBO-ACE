@@ -1,0 +1,28 @@
+package Com.Game;
+
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+
+public class ShowHighScore {
+	
+	int x = 0;
+	
+	public void render(Graphics g) {
+		
+		Font fnt1 = new Font("Comic Sans", Font.CENTER_BASELINE, 20);
+		g.setFont(fnt1);
+		g.setColor(new Color(0, 0, 0));
+		
+		if(Board.getScore() >= x) {
+			g.drawString(String.valueOf(Board.getScore()), 260, 150);
+			
+			x = Board.getScore();
+		}
+		
+		else g.drawString(String.valueOf(x), 260, 150);
+		
+	}
+	
+}
