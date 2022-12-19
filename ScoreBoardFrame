@@ -36,7 +36,7 @@ public class ScoreBoardFrame extends JPanel implements MouseListener{
 		
 		frame.setSize(550, 400);
 		frame.setVisible(true);
-		frame.setResizable(true);
+		frame.setResizable(false);
 		
 	}
 	public static void main(String[] args) {
@@ -63,14 +63,14 @@ public class ScoreBoardFrame extends JPanel implements MouseListener{
 		
 	}
 	
-	//public Rectangle reset = new Rectangle(220, 250, 80, 30);
+	//public Rectangle back = new Rectangle(230, 200, 80, 30);
 	@Override
 	public void mousePressed(MouseEvent e) {
 		int mx = e.getX();
 		int my = e.getY();
 		
-		if(mx >= 220 && mx <= 300) {
-			if(my >= 250 && my <= 330) {
+		if(mx >= 230 && mx <= 310) {
+			if(my >= 200 && my <= 280) {
 				
 				Game.setUpGUI();
 			}
