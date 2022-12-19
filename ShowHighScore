@@ -11,12 +11,12 @@ public class ShowHighScore {
 	
 	public void render(Graphics g) {
 		
-		Font fnt1 = new Font("Comic Sans", Font.CENTER_BASELINE, 20);
+		Font fnt1 = new Font("Comic Sans", Font.CENTER_BASELINE, 25);
 		g.setFont(fnt1);
 		g.setColor(new Color(0, 0, 0));
 		
 		if(Board.getScore() >= x) {
-			g.drawString(String.valueOf(Board.getScore()), 260, 150);
+			g.drawString(String.valueOf(Board.getScore()), 270 - 4 * String.valueOf(Board.getScore()).length(), 150);
 			
 			x = Board.getScore();
 		}
