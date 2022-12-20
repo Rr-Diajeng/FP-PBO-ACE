@@ -12,8 +12,7 @@ public class Sound {
 	URL soundURL[] = new URL[30];
 	
 	public Sound() {
-		soundURL[1] = getClass().getResource("/Music/GameOver.wav");
-		soundURL[2] = getClass().getResource("/Music/fun.wav");
+		soundURL[1] = getClass().getResource("/Music/fun.wav");
 	}
 	
 	public void setFile(int i) {
@@ -22,7 +21,7 @@ public class Sound {
 			AudioInputStream ais = AudioSystem.getAudioInputStream(soundURL[i]);
 			clip = AudioSystem.getClip();
 			clip.open(ais);
-			}catch(Exception e) {
+		}catch(Exception e) {
 				
 			}	
 	}
