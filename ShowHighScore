@@ -13,7 +13,7 @@ public class ShowHighScore {
 		
 		Font fnt1 = new Font("Comic Sans", Font.CENTER_BASELINE, 25);
 		g.setFont(fnt1);
-		g.setColor(new Color(0, 0, 0));
+		g.setColor(new Color(197, 155, 48));
 		
 		if(Board.getScore() >= x) {
 			g.drawString(String.valueOf(Board.getScore()), 270 - 4 * String.valueOf(Board.getScore()).length(), 150);
